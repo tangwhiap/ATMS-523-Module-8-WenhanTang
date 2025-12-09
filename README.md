@@ -69,6 +69,8 @@ Prediction example for **2024-07-14**, comparing:
 - Predicted precipitation map  
 - True ERA5 precipitation map  
 
+![Demo](images/demo.png)
+
 ---
 
 ## ▶️ How to Run
