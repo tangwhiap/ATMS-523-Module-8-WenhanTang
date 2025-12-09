@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 
+"""
+    Access the ERA5 netCDF files and
+    convert to the pandas data frame.
+"""
+
+# The directory of ERA5 netCDF files
+OrigDir = "/Users/wenhant2/Datasets/ERA5_2/Orig"
+
 import xarray as xr
 import numpy as np
 
@@ -16,7 +24,6 @@ name_dict = {
     "tp": "total_precipitation",
 }
     
-OrigDir = "/Users/wenhant2/Datasets/ERA5_2/Orig"
 
 def plot_prec_hist():
     import matplotlib.pyplot as plt
@@ -129,23 +136,32 @@ def extract_oneday_data(date, lon1, lon2, lat1, lat2):
     return df
 
 if __name__ == "__main__":
+    """
+        The test cases:
+    """
+
+    print("Data in one pixel")
     df = extract_point_data(
         lon = -88.2434,
         lat = 40.1164,
     )
     print(df)
 
+    print("Data over a region")
     df = extract_region_data(
         lon1=-105, lon2=-80,
         lat1=35, lat2=49
     )
     print(df)
 
+    print("One-day datq over a region")
     df = extract_oneday_data(
         date="2024-07-15",
         lon1=-105, lon2=-80,
         lat1=35, lat2=49
     )
     print(df)
+
+    print("The total precipitation histogram")
     plot_prec_hist()
 
