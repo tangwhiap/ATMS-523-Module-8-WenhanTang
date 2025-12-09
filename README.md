@@ -3,7 +3,7 @@
 
 ## ✨ Author
 
-**Wenhan Tang**  
+**Wenhan Tang** (UIN: 678054985)
 University of Illinois at Urbana–Champaign  
 ATMS 523 Final Project
 
@@ -86,11 +86,11 @@ Place ERA5 NetCDF files inside:
 
     /data/
 
-### 3. Run notebooks in order
+### 3. Test the ERA5 data by running
+    `./data_proc.py`
+### 3. Run notebook the notebook
 
-1. `model_training.ipynb`  
-2. `shap_analysis.ipynb`  
-3. `precipitation_maps.ipynb`
+    `ATMS523_final_project_WenhanTang.ipynb`
 
 ---
 
