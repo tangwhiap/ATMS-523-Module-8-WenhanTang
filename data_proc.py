@@ -16,8 +16,30 @@ name_dict = {
     "tp": "total_precipitation",
 }
     
-OrigDir = "/data/keeling/a/wenhant2/datasets/ERA2/Orig"
+OrigDir = "/Users/wenhant2/Datasets/ERA5_2/Orig"
 
+def plot_prec_hist():
+    import matplotlib.pyplot as plt
+    import xarray as xr
+
+    ds = xr.open_dataset(OrigDir + "/ERA5_" + name_dict["tp"] + ".nc")
+    
+    tp = ds["tp"]
+
+    print(np.sum(tp > 0.001) / np.sum(tp >= -1))
+    plt.figure(figsize=(10, 5))
+    tp.plot.hist(bins=100, color="steelblue", edgecolor="black")
+
+    plt.xlabel("Total precipitation (tp)")
+    plt.ylabel("Frequency")
+    plt.title("Histogram of ERA5 Total Precipitation (tp)")
+    
+    plt.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+
+
+    
 def extract_point_var(varName, lon, lat):
     ds = xr.open_dataset(OrigDir + "/ERA5_" + name_dict[varName] + ".nc")
     ts = ds[varName].sel(
@@ -25,6 +47,7 @@ def extract_point_var(varName, lon, lat):
         latitude=lat,
         method="nearest",
     )
+    ds.close()
     return ts
 
 def extract_point_data(lon, lat):
@@ -47,6 +70,7 @@ def extract_region_var(varName, lon1, lon2, lat1, lat2):
         latitude=slice(lat2, lat1)  
     )
 
+    ds.close()
     return region
 
 def extract_region_data(lon1, lon2, lat1, lat2):
@@ -72,6 +96,38 @@ def extract_region_data(lon1, lon2, lat1, lat2):
 
     return df
 
+def extract_oneday_var(varName, date, lon1, lon2, lat1, lat2):
+    ds = xr.open_dataset(OrigDir + "/ERA5_" + name_dict[varName] + ".nc")
+    da_day = ds[varName].sel(valid_time=date)
+    da_region = da_day.sel(
+        longitude=slice(lon1, lon2),
+        latitude=slice(lat2, lat1)
+    )
+    ds.close()
+    return da_region
+
+
+
+def extract_oneday_data(date, lon1, lon2, lat1, lat2):
+    region_dict = {}
+
+    for varName in name_dict:
+        region = extract_oneday_var(varName, date, lon1, lon2, lat1, lat2)
+
+        region_dict[varName] = region
+    region_ds = xr.Dataset(region_dict)
+
+    df = region_ds.to_dataframe().reset_index()
+
+    df = df.rename(columns={
+        "latitude": "lat",
+        "longitude": "lon",
+        "valid_time": "date"
+    })
+
+    df["doy"] = df["date"].dt.dayofyear
+    return df
+
 if __name__ == "__main__":
     df = extract_point_data(
         lon = -88.2434,
@@ -84,3 +140,12 @@ if __name__ == "__main__":
         lat1=35, lat2=49
     )
     print(df)
+
+    df = extract_oneday_data(
+        date="2024-07-15",
+        lon1=-105, lon2=-80,
+        lat1=35, lat2=49
+    )
+    print(df)
+    plot_prec_hist()
+
