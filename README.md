@@ -1,11 +1,11 @@
 # 🌧️ Seasonal Machine Learning for Precipitation Prediction over the U.S. Midwest
-*A final project for ATMS 523 (Machine Learning in Atmospheric Sciences)*
+*A final project for ATMS 523*
 
 ---
 
 ## 📌 Overview
 
-This project applies machine-learning techniques to predict **daily precipitation occurrence** over the U.S. Midwest using **ERA5 reanalysis data**. A set of surface meteorological variables—including wind, temperature, humidity, pressure, and cloud properties—is extracted at each grid cell and used as predictors.
+This project applies random forest method to predict **daily precipitation occurrence** over the U.S. Midwest using **ERA5 reanalysis data**. A set of surface meteorological variables—including wind, temperature, humidity, pressure, and cloud properties—is extracted at each grid cell and used as predictors.
 
 To account for seasonal variability in precipitation regimes, **separate Random Forest classifiers** are trained for **winter, spring, summer, and autumn**. The models are evaluated using accuracy, precision, and recall, and spatial performance maps are generated for each season. Feature importance analyses (including Random Forest importances and SHAP values) further highlight key predictors.
 
