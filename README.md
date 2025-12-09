@@ -1,4 +1,4 @@
-# 🌧️ Seasonal Machine Learning for Precipitation Prediction over the U.S. Midwest
+# 🌧️ Random Forest for Precipitation Prediction over the U.S. Midwest
 *A final project for ATMS 523*
 
 ## ✨ Author
