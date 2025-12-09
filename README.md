@@ -1,6 +1,12 @@
 # 🌧️ Seasonal Machine Learning for Precipitation Prediction over the U.S. Midwest
 *A final project for ATMS 523*
 
+## ✨ Author
+
+**Wenhan Tang**  
+University of Illinois at Urbana–Champaign  
+ATMS 523 Final Project
+
 ---
 
 ## 📌 Overview
@@ -93,12 +99,3 @@ Place ERA5 NetCDF files inside:
 ERA5 Daily Reanalysis (DOI: 10.24381/cds.4991cf48) will be used, covering one full year (e.g., 2023, or more years if necessary) over the continental U.S. at 0.25° spatial resolution.
 
 I would like to thank Haotian Ma (University of Wisconsin) for helping me resolve technical issues and for valuable discussions about the results.
-
-
----
-
-## ✨ Author
-
-**Wenhan Tang**  
-University of Illinois at Urbana–Champaign  
-ATMS 523 Final Project
