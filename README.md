@@ -23,13 +23,10 @@ A one-day case study illustrates model predictions versus true precipitation fie
 
     ATMS523_Final_Project/
     │
-    ├── data_proc.py              # Data extraction: point, region, one-day samples
-    ├── model_training.ipynb      # Seasonal RF model training and evaluation
-    ├── precipitation_maps.ipynb  # Spatial model performance and case study plots
-    ├── shap_analysis.ipynb       # SHAP-based feature interpretation
-    │
-    ├── README.md                 # Project documentation
-    └── /data/                    # ERA5 input data (not included)
+    ├── data_proc.py                                # Data extraction: point, region, one-day samples
+    ├── ATMS523_final_project_WenhanTang.ipynb      # Seasonal RF model training and evaluation
+    ├── LICENSE                                     # The MIT license
+    └── README.md                                   # Project documentation
 
 ---
 
@@ -82,12 +79,24 @@ Prediction example for **2024-07-14**, comparing:
 
 ### 2. Prepare ERA5 data
 
-Place ERA5 NetCDF files inside:
+Prepare the following ERA5 NetCDF files into a directory:
 
-    /data/
+    `ERA5_10m_u_component_of_wind.nc`
+    `ERA5_10m_v_component_of_wind.nc`
+    `ERA5_2m_dewpoint_temperature.nc`
+    `ERA5_2m_temperature.nc`
+    `ERA5_mean_sea_level_pressure.nc`
+    `ERA5_total_cloud_cover.nc`
+    `ERA5_total_column_cloud_ice_water.nc`
+    `ERA5_total_column_cloud_liquid_water.nc`
+    `ERA5_total_column_rain_water.nc`
+    `ERA5_total_precipitation.nc`
+
 
 ### 3. Test the ERA5 data by running
-    `./data_proc.py`
+    Set the variable `OrigDir=` the directory of ERA5 files
+    Excute `./data_proc.py`
+    If no errors are raised, the test is passed
 
 ### 4. Run notebook the notebook
 
